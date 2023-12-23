@@ -1,0 +1,42 @@
+<div class="cart-container">
+    <div class="cartItemHolder">
+        <div *ngFor="let cartItem of cart" class="cart-item">
+            <img src="{{cartItem.product.url}}" alt="{{cartItem.product.name}}">
+            <div class="cart-item-details">
+                <h1>{{cartItem.product.name}}</h1>
+                Price: ${{cartItem.product.price}}
+                <br>
+                <br>
+                Quantity: {{cartItem.quantity}}
+                <br>
+                <br> Click to Change: 
+                <select name="quantity" class="select-input" [(ngModel)]="changedQuantity" (ngModelChange)="quantityWasChanged(cartItem.product.id)">
+                    <option *ngFor="let quant of quantityOptions" [value]="quant">
+                        {{quant}}
+                      </option>
+                          
+                  </select>
+                <button (click)="removeProd(cartItem.product.id)">Click to Remove</button>
+            </div>
+        </div>  
+        <h1>${{total}}</h1>
+    </div>
+     
+
+    <form #form="ngForm" (submit)="submitOrderForm()" class="form-margin">
+        <label>Full name:</label>
+        <input type="text" name="title" required minlength=3 placeholder="(minimum 3 characters)" [(ngModel)]="fullName">
+        <br>
+        <label>Address:</label>
+        <input type="text" name="title" required minlength=6 placeholder="(minimum 6 characters)" [(ngModel)]="address">
+        <br>
+        <label>Credit Card Number:</label>
+        <input type="tel" name="title" required minlength=16 maxlength=16 placeholder="(16-digit-number)" [(ngModel)]="cardNumber" onkeypress="return (event.charCode > 47 && event.charCode < 58);">
+        <br>
+        <p>We will never share your payment details with anyone else.</p>
+        <br>
+        <input type="submit" [disabled]="form.invalid" value="Submit" class="btn btn-primary">
+    </form>
+</div>
+
+
