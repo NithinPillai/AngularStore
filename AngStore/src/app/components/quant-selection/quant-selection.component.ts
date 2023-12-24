@@ -21,7 +21,7 @@ export class QuantSelectionComponent {
   constructor() {}
 
   quantWasSelected(): void {
-    alert(this.productId + " quantity: " + this.changedQuantity)
+    alert("Changed quantity to " + this.changedQuantity)
     const item = {
       prodId: this.productId, 
       cQ: this.changedQuantity

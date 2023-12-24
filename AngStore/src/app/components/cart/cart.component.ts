@@ -57,7 +57,6 @@ export class CartComponent {
   }
 
   changeQuantity(item: { prodId: number, cQ: number }): void {
-    alert(item.prodId + " " + item.cQ)
     if (item.cQ > 0) {
       for (let i = 0; i < this.cart.length; i++) {
         if (this.cart[i].product.id === item.prodId) {
