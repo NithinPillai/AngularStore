@@ -10,12 +10,8 @@
                 Quantity: {{cartItem.quantity}}
                 <br>
                 <br> Click to Change: 
-                <select name="quantity" class="select-input" [(ngModel)]="changedQuantity" (ngModelChange)="quantityWasChanged(cartItem.product.id)">
-                    <option *ngFor="let quant of quantityOptions" [value]="quant">
-                        {{quant}}
-                      </option>
-                          
-                  </select>
+
+                <app-quant-selection [productId]="cartItem.product.id" (changeQuantity)="changeQuantity($event)"></app-quant-selection>
                 <button (click)="removeProd(cartItem.product.id)">Click to Remove</button>
             </div>
         </div>  

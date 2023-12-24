@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductItemDetailComponent } from '../product-item-detail/product-item-detail.component';
+import { QuantSelectionComponent } from '../quant-selection/quant-selection.component';
 
 @Component({
   selector: 'app-product-item',
@@ -13,7 +14,7 @@ import { ProductItemDetailComponent } from '../product-item-detail/product-item-
   imports: [
     NgFor, FormsModule, 
     RouterModule, CommonModule, 
-    ProductItemDetailComponent
+    ProductItemDetailComponent, QuantSelectionComponent
   ],
   templateUrl: './product-item.component.html',
   styleUrl: './product-item.component.css'
@@ -23,6 +24,7 @@ export class ProductItemComponent {
   quantity: number;
   @Output() addToCart: EventEmitter<CartItem> = new EventEmitter; 
   quantityOptions: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
 
   constructor() {
     this.product  = {

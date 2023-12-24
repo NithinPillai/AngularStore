@@ -1,0 +1,5 @@
+<select name="quantity" class="select-input" [(ngModel)]="changedQuantity" (ngModelChange)="quantWasSelected()">
+    <option *ngFor="let quant of quantityOptions" [value]="quant">
+        {{quant}}
+      </option>
+  </select>

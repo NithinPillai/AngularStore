@@ -11,13 +11,15 @@ import { Router } from '@angular/router';
 import { ConfirmationService } from '../../services/ConfirmationService/confirmation.service';
 import { ProductItemComponent } from '../product-item/product-item.component';
 import { NgModule } from '@angular/core';
+import { QuantSelectionComponent } from '../quant-selection/quant-selection.component';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
   imports: [NgFor, CommonModule, 
     FormsModule, RouterModule, 
-    ConfirmationComponent, ProductItemComponent
+    ConfirmationComponent, ProductItemComponent, 
+    QuantSelectionComponent
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
@@ -29,7 +31,7 @@ export class CartComponent {
   cardNumber: string = '';
   total: number = 0;
   quantityOptions: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  changedQuantity: number = 0;
+  // changedQuantity: number = 0;
 
   currentProduct: Product = {
     id: -1, 
@@ -54,24 +56,25 @@ export class CartComponent {
 
   }
 
-  quantityWasChanged(prodId: number): void {
-
-    if (this.changedQuantity > 0) {
+  changeQuantity(item: { prodId: number, cQ: number }): void {
+    alert(item.prodId + " " + item.cQ)
+    if (item.cQ > 0) {
       for (let i = 0; i < this.cart.length; i++) {
-        if (this.cart[i].product.id === prodId) {
-          this.cart[i].quantity = this.changedQuantity;
+        if (this.cart[i].product.id === item.prodId) {
+          this.cart[i].quantity = item.cQ;
           
           break;
         }
       }
     } else {
-      this.cart = this.cartS.removeProduct(prodId);
+      this.cart = this.cartS.removeProduct(item.prodId);
     }
 
     this.total = this.cartS.getTotal();
   }
 
   removeProd(prodId: number): void {
+    alert('Item Removed Successfully')
     this.cart = this.cartS.removeProduct(prodId);
     this.total = this.cartS.getTotal();
   }
